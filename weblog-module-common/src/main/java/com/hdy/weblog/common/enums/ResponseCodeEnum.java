@@ -11,7 +11,7 @@ import lombok.Getter;
  **/
 @Getter
 @AllArgsConstructor
-public enum  ResponseCodeEnum implements BaseExceptionInterface {
+public enum ResponseCodeEnum implements BaseExceptionInterface {
 
     // ----------- 通用异常状态码 -----------
     SYSTEM_ERROR("10000", "出错啦，后台小哥正在努力修复中..."),
@@ -24,6 +24,8 @@ public enum  ResponseCodeEnum implements BaseExceptionInterface {
     USERNAME_NOT_FOUND("20003", "该用户不存在"),
     FORBIDDEN("20004", "演示账号仅支持查询操作！"),
     CATEGORY_NAME_IS_EXISTED("20005", "该分类已存在，请勿重复添加！"),
+    TAG_CANT_DUPLICATE("20006", "请勿添加表中已存在的！"),
+    TAG_NOT_EXISTED("20007", "该标签不存在！"),
 
     ;
 
