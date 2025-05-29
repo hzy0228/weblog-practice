@@ -6,7 +6,9 @@ import com.hdy.weblog.admin.model.vo.category.DeleteCategoryReqVO;
 import com.hdy.weblog.admin.model.vo.category.FindCategoryPageListReqVO;
 import com.hdy.weblog.admin.model.vo.category.FindCategoryPageListRspVO;
 import com.hdy.weblog.admin.service.AdminCategoryService;
+import com.hdy.weblog.common.domain.dos.ArticleCategoryRelDO;
 import com.hdy.weblog.common.domain.dos.CategoryDO;
+import com.hdy.weblog.common.domain.mapper.ArticleCategoryRelMapper;
 import com.hdy.weblog.common.domain.mapper.CategoryMapper;
 import com.hdy.weblog.common.enums.ResponseCodeEnum;
 import com.hdy.weblog.common.exception.BizException;
@@ -33,6 +35,8 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
 
     @Autowired
     private CategoryMapper categoryMapper;
+    @Autowired
+    private ArticleCategoryRelMapper articleCategoryRelMapper;
 
 
     /**
@@ -111,6 +115,14 @@ public class AdminCategoryServiceImpl implements AdminCategoryService {
     public Response deleteCategory(DeleteCategoryReqVO deleteCategoryReqVO) {
         // 分类 ID
         Long categoryId = deleteCategoryReqVO.getId();
+
+        // 校验该分类下是否已经有文章，若有，则提示需要先删除分类下所有文章，才能删除
+        ArticleCategoryRelDO articleCategoryRelDO = articleCategoryRelMapper.selectOneByCategoryId(categoryId);
+
+        if (Objects.nonNull(articleCategoryRelDO)) {
+            log.warn("==> 此分类下包含文章，无法删除，categoryId: {}", categoryId);
+            throw new BizException(ResponseCodeEnum.CATEGORY_CAN_NOT_DELETE);
+        }
 
         // 删除分类
         categoryMapper.deleteById(categoryId);
