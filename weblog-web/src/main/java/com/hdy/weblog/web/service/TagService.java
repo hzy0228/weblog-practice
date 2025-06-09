@@ -1,6 +1,7 @@
 package com.hdy.weblog.web.service;
 
 import com.hdy.weblog.common.utils.Response;
+import com.hdy.weblog.web.model.vo.tag.FindTagArticlePageListReqVO;
 
 /**
  * @Author: Hao-ZY
@@ -15,4 +16,12 @@ public interface TagService {
      */
     Response findTagList();
 
+
+    /**
+     * 获取标签下文章分页列表
+     *
+     * @param findTagArticlePageListReqVO
+     * @return
+     */
+    Response findTagPageList(FindTagArticlePageListReqVO findTagArticlePageListReqVO);
 }

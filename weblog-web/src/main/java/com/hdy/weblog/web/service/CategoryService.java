@@ -1,6 +1,7 @@
 package com.hdy.weblog.web.service;
 
 import com.hdy.weblog.common.utils.Response;
+import com.hdy.weblog.web.model.vo.category.FindCategoryArticlePageListReqVO;
 
 /**
  * @Author: Hao-ZY
@@ -14,4 +15,13 @@ public interface CategoryService {
      * @return
      */
     Response findCategoryList();
+
+
+    /**
+     * 获取分类下文章分页数据
+     *
+     * @param findCategoryArticlePageListReqVO
+     * @return
+     */
+    Response findCategoryArticlePageList(FindCategoryArticlePageListReqVO findCategoryArticlePageListReqVO);
 }
