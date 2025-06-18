@@ -11,7 +11,7 @@
  Target Server Version : 80037 (8.0.37)
  File Encoding         : 65001
 
- Date: 11/06/2025 16:11:40
+ Date: 18/06/2025 16:34:10
 */
 
 SET NAMES utf8mb4;
@@ -159,7 +159,7 @@ CREATE TABLE `t_statistics_article_pv`  (
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_pv_date`(`pv_date` ASC) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '统计表 - 文章 PV (访问量)' ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '统计表 - 文章 PV (访问量)' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of t_statistics_article_pv
